@@ -1,0 +1,273 @@
+{% extends 'Dashboard/base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<div class="clearfix"></div>
+
+<section class="inner-header-title blank">
+  <div class="container">
+    <h1>Create Company</h1>
+  </div>
+</section>
+<div class="clearfix"></div>
+
+
+<form method="POST" enctype="multipart/form-data" action="{% url 'create_com' %}">
+  {% csrf_token %}
+
+
+<div class="detail-desc section">
+  <div class="container">
+    <div class="ur-detail-wrap create-kit padd-bot-0">
+      
+      <div class="row">
+        <div class="detail-pic js">
+          <div class="box">
+            {% if user_details.dp %}
+            <input name="dp" type="file" accept="image/*" value="{{user_details.dp.url}}"  id="upload-pic" class="inputfile"/>
+         {% else %}
+         <input name="dp" type="file" accept="image/*"  id="upload-pic" class="inputfile"/>
+         {% endif %}   
+            <label for="upload-pic"><i class="fa fa-upload" aria-hidden="true"></i><span></span></label>
+            <center>Display Picture</center>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="row bottom-mrg">
+        
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <label>Company Name</label>
+              {% if user_details.first %}
+                        <input name="first" type="text" class="form-control" value="{{user_details.first}}",>
+                        {% else %}
+                        <input name="first" type="text" class="form-control" placeholder="CareerEnv">
+                        {% endif %}
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <label>Company Tagline</label>
+              {% if user_details.last %}
+                        <input name="last" type="text" class="form-control" value="{{user_details.last}}">
+                        {% else %}
+                        <input name="last" type="text" class="form-control" placeholder="Environment to Build Your Career" >
+                        {% endif %}
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <labe>Category</label>
+              <select class="form-control input-lg">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <label>Company CEO Name</label>
+              <input name="status" type="text" class="form-control" placeholder="JAD">
+            </div>
+          </div>
+        
+          
+          <div class="col-md-12 col-sm-12">
+            <label>About Company</label>
+            <textarea name="about" class="form-control" placeholder="About"></textarea>
+          </div>
+        
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<!-- General Detail End -->
+
+<!-- Basic Full Detail Form Start -->
+<section class="full-detail">
+  <div class="container">
+    <div class="row bottom-mrg extra-mrg">
+
+        <h2 class="detail-title">Additional Details</h2>
+        <div class="col-md-6 col-sm-6">
+          <label>Company Email</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            {% if user_details.mail %}
+                        
+                        <input name="mail" type="email" class="form-control" value="{{user_details.mail}}">
+                        {% else %}
+                        
+                        <input name="mail" type="email" class="form-control" placeholder="office@careerenv.com">
+                        {% endif %}
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>Phone</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            {% if user_details.phone %}
+            
+                        <input name="phone" type="text" class="form-control" value="{{user_details.phone}}">
+                        {% else %}
+                        
+                        <input name="phone" type="text" class="form-control" placeholder="+91 918 867 2301">
+                        {% endif %}
+          </div>
+        </div>
+
+  <!--			<div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+            <input type="text" class="form-control" placeholder="Website Address">
+          </div>
+        </div>   -->
+
+        <div class="col-md-6 col-sm-6">
+          <label>Location</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+            {% if user_details.address%}
+            
+                        <input name="address" type="text" class="form-control" value="{{user_details.address}}">
+                        {% else %}
+                        
+                        <input name="address" type="text" class="form-control" placeholder="Banguluru" >
+                        {% endif %}
+          </div>
+        </div>
+    <!--
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+            <input type="text" id="company-dob" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
+          </div>
+        </div>
+      -->
+      <div class="col-md-6 col-sm-6">
+        <label>Company Website</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+          
+          <input name="yoursite" type="text" class="form-control" placeholder="www.careerenv.com">
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-sm-6">
+        <label>Postal Code</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+          
+          <input name="postal" type="text" class="form-control" placeholder="686543">
+        </div>
+      </div>
+
+
+      <div class="col-md-6 col-sm-6">
+        <label>City</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+          
+          <input name="city" type="text" class="form-control" placeholder="Kottayam">
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <label>State</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+          
+          <input name="state" type="text" class="form-control" placeholder="Kerala">
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <label>Country</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+          
+          <input name="country" type="text" class="form-control" placeholder="India">
+        </div>
+      </div>
+
+    <!--
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+            <input type="text" class="form-control" placeholder="Address">
+          </div>
+        </div> -->
+
+      
+    </div>
+
+    <div class="row bottom-mrg extra-mrg">
+      
+        <h2 class="detail-title">Social Profile</h2>
+        <div class="col-md-6 col-sm-6">
+          <label>Facebook</label>
+          <div class="input-group">
+            
+            <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+            <input name="facebook" type="text" class="form-control" placeholder="Facebook">
+          </div>
+        </div>
+
+        
+
+        <div class="col-md-6 col-sm-6">
+          <label>Twitter</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+            
+            <input name="twitter" type="text" class="form-control" placeholder="Twitter">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>Instagram</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+            
+            <input name="instagram" type="text" class="form-control" placeholder="Instagram">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>LinkedIn</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+            
+            <input name="linkedin" type="text" class="form-control" placeholder="LinkedIn">
+          </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-12 col-sm-12">
+      <button type="submit" class="btn btn-success btn-primary small-btn">Submit your Job</button>
+    </div>
+
+      </form>
+    </div>
+  </div>
+
+</section>
+
+
+{% endblock %}

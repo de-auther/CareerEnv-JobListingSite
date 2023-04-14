@@ -1,0 +1,131 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+
+	<!-- ========== Begin: Brows job ===============  -->
+
+    <div class="clearfix"></div><br>
+
+
+    
+			
+    <!-- Title Header Start -->
+    <section class="inner-header-title" style="background-image:url({% static 'assets/img/banner-10.jpg' %});">
+        <div class="container">
+            <h1>Browse Jobs</h1>
+        </div>
+    </section>
+    <div class="clearfix"></div>
+
+
+    <section>
+        <div class="container">
+            <!-- Company Searrch Filter Start -->
+            <div class="row extra-mrg">
+                <div class="wrap-search-filter">
+                    <form>
+                       
+                        <div class="col-md-3 col-sm-3">
+                            <div class="dropdowns">
+                                <button class="dropbtns">Dropdown</button>
+                                <div class="dropdowns-content">
+                                    {% for category  in categories %}
+                                <a href="{{category.get_url}}">{{category}}</a>
+                                {% endfor %}
+                                
+                                </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Company Searrch Filter End -->
+            
+            <!--Browse Job In Grid-->
+            <div class="row extra-mrg">
+
+
+
+
+
+                {% for job in jobs %}
+            
+                <div class="col-md-4 col-sm-6">
+                    <div class="grid-view brows-job-list">
+                        <div class="brows-job-company-img">
+                           
+                            {% if job.photo %}
+                            <img src="{{job.photo.url}}" class="img-responsive" alt="" />
+                            {% elif job.photourl %}
+                            <img src="{{job.photourl}}" class="img-responsive" alt="" />
+                            {% else %}
+                            <img src="/media/default.jpg" class="img-responsive" alt="" />
+                            {% endif %}
+                        </div>
+                        <div class="brows-job-position">
+                            <h3><a href="{{job.get_url}}">{{job.name}}</a></h3>
+                            <p><span>{{job.company}}</span></p>
+                        </div>
+                        <div class="job-position">
+                            <span class="job-num">{{job.vaccancy}} Position</span>
+                        </div>
+                        <div class="brows-job-type">
+                            <span class="full-time">{{job.availability}}</span>
+                        </div>
+                        <ul class="grid-view-caption">
+                            <li>
+                                <div class="brows-job-location">
+                                    <p><i class="fa fa-map-marker"></i>{{job.location}}</p>
+                                </div>
+                            </li>
+                            <li>
+                                <p><span class="brows-job-sallery"><i class="fa fa-money"></i>{{job.salary}}</span></p>
+                            </li>
+                        </ul>
+                        {% if job.varified %}
+                        <span class="tg-themetag tg-featuretag">Varified</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                {% endfor %}
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+            </section>      
+            <!--/.Browse Job In Grid-->
+
+            <div class="row">
+                <ul class="pagination">
+                    {% if jobs.has_previous %}
+                    <li><a href="/dashboard/list_job/?page={{jobs.previous_page_number}}"><i class="ti-arrow-left"></i></a></li>
+                    {% endif %}
+
+                    
+                    <li class=""><a href="#">{{jobs.number}}</a><span> ...</span> <span> {{jobs.end_index}}</span> </li> 
+                    
+                    {% if jobs.has_next %}
+                    <li><a href="/dashboard/list_job/?page={{jobs.next_page_number}}"><i class="ti-arrow-right"></i></a></li> 
+                    {% endif %}
+                </ul>
+            </div>
+            
+        </div>
+    
+    <!-- ========== Begin: Brows job Grid End ===============  -->
+    
+
+
+
+    {% endblock %}

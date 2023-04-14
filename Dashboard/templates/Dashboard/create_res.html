@@ -1,0 +1,731 @@
+{% extends 'Dashboard/base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<div class="clearfix"></div>
+
+<section class="inner-header-title blank">
+  <div class="container">
+    <h1>Create Resume</h1>
+  </div>
+</section>
+<div class="clearfix"></div>
+
+
+<form method="POST" enctype="multipart/form-data" action="{% url 'create_res' %}">
+  {% csrf_token %}
+
+
+<div class="detail-desc section">
+  <div class="container">
+    <div class="ur-detail-wrap create-kit padd-bot-0">
+      
+      <div class="row">
+        <div class="detail-pic js">
+          <div class="box">
+            {% if user_details.dp %}
+            <input name="dp" type="file" accept="image/*" value="{{user_details.dp.url}}"  id="upload-pic" class="inputfile"/>
+         {% else %}
+         <input name="dp" type="file" accept="image/*"  id="upload-pic" class="inputfile"/>
+         {% endif %}   
+            <label for="upload-pic"><i class="fa fa-upload" aria-hidden="true"></i><span></span></label>
+            <center>Display Picture</center>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="row bottom-mrg">
+        
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <label>First Name</label>
+              {% if user_details.first %}
+                        <input name="first" type="text" class="form-control" value="{{user_details.first}}",>
+                        {% else %}
+                        <input name="first" type="text" class="form-control" placeholder="First Name">
+                        {% endif %}
+            </div>
+          </div>
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <label>Last Name</label>
+              {% if user_details.last %}
+                        <input name="last" type="text" class="form-control" value="{{user_details.last}}">
+                        {% else %}
+                        <input name="last" type="text" class="form-control" placeholder="Last Name" >
+                        {% endif %}
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <labe>Do you have any experience?</label>
+              <select class="form-control input-lg">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 col-sm-6">
+            <div class="input-group">
+              <label>Current Status</label>
+              <input name="status" type="text" class="form-control" placeholder="Fresher or your job name or etc">
+            </div>
+          </div>
+        
+          
+          <div class="col-md-12 col-sm-12">
+            <label>About</label>
+            <textarea name="about" class="form-control" placeholder="About"></textarea>
+          </div>
+        
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+<!-- General Detail End -->
+
+<!-- Basic Full Detail Form Start -->
+<section class="full-detail">
+  <div class="container">
+    <div class="row bottom-mrg extra-mrg">
+
+        <h2 class="detail-title">Additional Details</h2>
+        <div class="col-md-6 col-sm-6">
+          <label>Email</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+            {% if user_details.mail %}
+                        
+                        <input name="mail" type="email" class="form-control" value="{{user_details.mail}}">
+                        {% else %}
+                        
+                        <input name="mail" type="email" class="form-control" placeholder="example@example.com">
+                        {% endif %}
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>Phone</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+            {% if user_details.phone %}
+            
+                        <input name="phone" type="text" class="form-control" value="{{user_details.phone}}">
+                        {% else %}
+                        
+                        <input name="phone" type="text" class="form-control" placeholder="+91 258 475 6859">
+                        {% endif %}
+          </div>
+        </div>
+
+  <!--			<div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+            <input type="text" class="form-control" placeholder="Website Address">
+          </div>
+        </div>   -->
+
+        <div class="col-md-6 col-sm-6">
+          <label>Location</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+            {% if user_details.address%}
+            
+                        <input name="address" type="text" class="form-control" value="{{user_details.address}}">
+                        {% else %}
+                        
+                        <input name="address" type="text" class="form-control" placeholder="Banguluru" >
+                        {% endif %}
+          </div>
+        </div>
+    <!--
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+            <input type="text" id="company-dob" data-lang="en" data-large-mode="true" data-min-year="2017" data-max-year="2020" data-disabled-days="08/17/2017,08/18/2017" data-id="datedropper-0" data-theme="my-style" class="form-control" readonly="">
+          </div>
+        </div>
+      -->
+      <div class="col-md-6 col-sm-6">
+        <label>age</label>
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
+          
+          <input name="age" type="text" class="form-control" placeholder="23">
+        </div>
+      </div>
+
+
+
+
+    <!--
+        <div class="col-md-6 col-sm-6">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-users"></i></span>
+            <input type="text" class="form-control" placeholder="Address">
+          </div>
+        </div> -->
+
+      
+    </div>
+
+    <div class="row bottom-mrg extra-mrg">
+      
+        <h2 class="detail-title">Social Profile</h2>
+        <div class="col-md-6 col-sm-6">
+          <label>Facebook</label>
+          <div class="input-group">
+            
+            <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+            <input name="facebook" type="text" class="form-control" placeholder="Facebook">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>Google Mail</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-google-plus"></i></span>
+            
+            <input name="gmail" type="text" class="form-control" placeholder="Gmail">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>Twitter</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+            
+            <input name="twitter" type="text" class="form-control" placeholder="Twitter">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>Instagram</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+            
+            <input name="instagram" type="text" class="form-control" placeholder="Instagram">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>LinkedIn</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+            
+            <input name="linkedin" type="text" class="form-control" placeholder="LinkedIn">
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6">
+          <label>your site. If any</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+           
+            <input name="yoursite" type="text" class="form-control" placeholder="Your Site">
+          </div>
+        </div>
+
+      
+    </div>
+
+    <div class="row bottom-mrg extra-mrg">
+      
+        <h2 class="detail-title">Proffesional Skills</h2>
+
+<div class="col-md-12 col-sm-12">
+
+        <div class="col-md-6 col-sm-6">
+          <label>Skill-1</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+            
+            <input name="skill1" type="text" class="form-control" placeholder="Core Python">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <label>Proficiency Level</label>
+          <div class="input-group">
+            
+            <select name="per1" class="form-control input-lg">
+
+              <option value="20">Beginner</option>
+              <option value="40">Upper Beginner</option>
+              <option value="60">Intermediate</option>
+              <option value="80">Upper Intermediate</option>
+              <option value="99">Advanced</option>
+
+            </select>
+          </div>
+        </div> 
+</div>
+<div class="col-md-12 col-sm-12">
+
+        <div class="col-md-6 col-sm-6">
+          <label>Skill-2</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+            
+            <input name="skill2" type="text" class="form-control" placeholder="Communication skill">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <label>Profficiency Level</label>
+          <div class="input-group">
+            
+            <select name="per2" class="form-control input-lg">
+
+              <option value="20">Beginner</option>
+              <option value="40">Upper Beginner</option>
+              <option value="60">Intermediate</option>
+              <option value="80">Upper Intermediate</option>
+              <option value="99">Advanced</option>
+
+            </select>
+          </div>
+        </div> 
+</div>
+
+<div class="col-md-12 col-sm-12">
+
+        <div class="col-md-6 col-sm-6">
+          <label>Skill-3</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+            
+            <input name="skill3" type="text" class="form-control" placeholder="Leadership">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <label>Profficiency Level</label>
+          <div class="input-group">
+            
+            <select name="per3" class="form-control input-lg">
+
+              <option value="20">Beginner</option>
+              <option value="40">Upper Beginner</option>
+              <option value="60">Intermediate</option>
+              <option value="80">Upper Intermediate</option>
+              <option value="99">Advanced</option>
+
+            </select>
+          </div>
+        </div> 
+</div>
+
+<div class="col-md-12 col-sm-12">
+
+        <div class="col-md-6 col-sm-6">
+          <label>Skill-4</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+           
+            <input name="skill4" type="text" class="form-control" placeholder="Marketing">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <label>Profficiency Level</label>
+          <div class="input-group">
+            
+            <select name="per4" class="form-control input-lg">
+
+              <option value="20">Beginner</option>
+              <option value="40">Upper Beginner</option>
+              <option value="60">Intermediate</option>
+              <option value="80">Upper Intermediate</option>
+              <option value="99">Advanced</option>
+
+            </select>
+          </div>
+        </div> 
+</div>
+
+<div class="col-md-12 col-sm-12">
+
+        <div class="col-md-6 col-sm-6">
+          <label>Skill-5</label>
+          <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+            
+            <input name="skill5" type="text" class="form-control" placeholder="Linux">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <label>Profficiency Level</label>
+          <div class="input-group">
+            
+            <select name="per5" class="form-control input-lg">
+
+              <option value="20">Beginner</option>
+              <option value="40">Upper Beginner</option>
+              <option value="60">Intermediate</option>
+              <option value="80">Upper Intermediate</option>
+              <option value="99">Advanced</option>
+
+            </select>
+          </div>
+        </div> 
+</div>
+
+<div class="col-md-12 col-sm-12">
+
+        <div class="col-md-6 col-sm-6">
+          <label>Skill-6</label>
+          <div class="input-group">
+           
+            <span class="input-group-addon"><i class="fa fa-rocket"></i></span>
+            <input name="skill6" type="text" class="form-control" placeholder="Problem Solving">
+          </div>
+        </div>
+
+
+        <div class="col-md-6 col-sm-6">
+          <label>Profficiency Level</label>
+          <div class="input-group">
+            
+            <select name="per6" class="form-control input-lg">
+
+              <option value="20">Beginner</option>
+              <option value="40">Upper Beginner</option>
+              <option value="60">Intermediate</option>
+              <option value="80">Upper Intermediate</option>
+              <option value="99">Advanced</option>
+
+            </select>
+          </div>
+        </div> 
+</div>
+</div>
+
+<h2 class="detail-title">Education</h2>
+<p >Only provide Top two educational details</p>
+
+<div class="detail-desc section">
+<div class="container">
+
+
+  
+
+  <div class="row bottom-mrg">
+    
+
+      <div class="col-md-6 col-sm-6">
+        <div class="input-group">
+          <label>Course Name</label>
+          <input name="course1" type="text" class="form-control" placeholder="Master's">
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <div class="input-group">
+          <label>Stream</label>
+          <input name="stream1" type="text" class="form-control" placeholder="Physics">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class="input-group">
+          <label>University</label>
+          <input name="university1" type="text" class="form-control" placeholder="Mahatma Gadhi University">
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-sm-6">
+        <div class="input-group">
+          <label>Year of studied</label>
+          <input name="edu_date1" type="text" class="form-control" placeholder="2019-21">
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <label>Discription</label>
+        <textarea name="edu_discription1" class="form-control" placeholder="Brief discription of achiements you got"></textarea>
+      </div>
+    
+  </div>		
+</div>
+</div>
+
+
+<div class="detail-desc section">
+<div class="container">
+
+
+  
+
+  <div class="row bottom-mrg">
+    
+
+    <div class="col-md-6 col-sm-6">
+      <div class="input-group">
+        <label>Course Name</label>
+        <input name="course1" type="text" class="form-control" placeholder="Bachilor's">
+      </div>
+    </div>
+
+    <div class="col-md-6 col-sm-6">
+      <div class="input-group">
+        <label>Stream</label>
+        <input name="stream1" type="text" class="form-control" placeholder="Physics">
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+      <div class="input-group">
+        <label>University</label>
+        <input name="university1" type="text" class="form-control" placeholder="Mahatma Gadhi University">
+      </div>
+    </div>
+  
+    <div class="col-md-6 col-sm-6">
+      <div class="input-group">
+        <label>Year of studied</label>
+        <input name="edu_date1" type="text" class="form-control" placeholder="2016-19">
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+      <label>Discription</label>
+      <textarea name="edu_discription1" class="form-control" placeholder="Brief discription of achiements you got"></textarea>
+    </div>
+    
+  </div>		
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="detail-title">Projects</h2>
+<p >Only provide Top two project details</p>
+
+<div class="detail-desc section">
+<div class="container">
+
+
+  
+
+  <div class="row bottom-mrg">
+    
+
+      <div class="col-md-6 col-sm-6">
+        <div class="input-group">
+          <label>Project Name</label>
+          <input name="pro1" type="text" class="form-control" placeholder="Incubator using Pine Microconroller">
+        </div>
+      </div>
+
+      
+    
+      <div class="col-md-6 col-sm-6">
+        <div class="input-group">
+          <label>Year</label>
+          <input name="prodate1" type="text" class="form-control" placeholder="2019-21">
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <label>Discription</label>
+        <textarea name="prodisc1" class="form-control" placeholder="Discription"></textarea>
+      </div>
+    
+  </div>		
+</div>
+</div>
+
+
+<div class="detail-desc section">
+<div class="container">
+
+
+  
+
+  <div class="row bottom-mrg">
+    
+
+    <div class="col-md-6 col-sm-6">
+      <div class="input-group">
+        <label>Project Name</label>
+        <input name="pro1" type="text" class="form-control" placeholder="Incubator using Pine Microconroller">
+      </div>
+    </div>
+
+    
+  
+    <div class="col-md-6 col-sm-6">
+      <div class="input-group">
+        <label>Year</label>
+        <input name="prodate1" type="text" class="form-control" placeholder="2019-21">
+      </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+      <label>Discription</label>
+      <textarea name="prodisc1" class="form-control" placeholder="Discription"></textarea>
+    </div>
+   
+  </div>		
+</div>
+</div>
+
+
+
+
+
+
+<h2 class="detail-title">Experience</h2>
+<p >Only provide Top two Experience details</p>
+
+<div class="detail-desc section">
+<div class="container">
+
+
+  
+
+  <div class="row bottom-mrg">
+    
+
+      <div class="col-md-6 col-sm-6">
+        <label>Experienced as</label>
+        <div class="input-group">
+          <input name="exp1" type="text" class="form-control" placeholder="Position Name">
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <label>Year</label>
+        <div class="input-group">
+          <input name="expdate1" type="text" class="form-control" placeholder="2019-21">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <label>Company</label>
+        <div class="input-group">
+          <input name="expcom1" type="text" class="form-control" placeholder="CareerEnv">
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-sm-6">
+        <label>Label</label>
+        <div class="input-group">
+          <input name="expsal1" type="text" class="form-control" placeholder="20k">
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <label>Discription</label>
+        <textarea name="expdisc1" class="form-control" placeholder="Discription.."></textarea>
+      </div>
+    
+  </div>		
+</div>
+</div>
+
+
+<div class="detail-desc section">
+<div class="container">
+
+
+  
+
+  <div class="row bottom-mrg">
+    
+
+     <div class="col-md-6 col-sm-6">
+        <label>Experienced as</label>
+        <div class="input-group">
+          <input name="exp1" type="text" class="form-control" placeholder="Position Name">
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-6">
+        <label>Year</label>
+        <div class="input-group">
+          <input name="expdate1" type="text" class="form-control" placeholder="2019-21">
+        </div>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <label>Company</label>
+        <div class="input-group">
+          <input name="expcom1" type="text" class="form-control" placeholder="CareerEnv">
+        </div>
+      </div>
+    
+      <div class="col-md-6 col-sm-6">
+        <label>Label</label>
+        <div class="input-group">
+          <input name="expsal1" type="text" class="form-control" placeholder="20k">
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12">
+        <label>Discription</label>
+        <textarea name="expdisc1" class="form-control" placeholder="Discription.."></textarea>
+      </div>
+    
+  </div>		
+</div>
+</div>
+
+
+<h2 class="detail-title">Photos</h2>
+<p>upload latest full size two photos other than display picture</p>
+
+
+<div class="col-md-6 col-sm-6">
+  <label>Upload Photo 1</label>
+  <div class="dropzone dz-clickable profile-cover">
+      <div class="dz-default dz-message">
+          <i class="fa fa-cloud-upload"></i>
+          <input name="photo1" type="file">
+          <span>Drop files here to upload</span>
+      </div>
+  </div>
+</div>
+
+<div class="col-md-6 col-sm-6">
+  <label>Upload Photo 2</label>
+  <div class="dropzone dz-clickable profile-cover">
+      <div class="dz-default dz-message">
+          <i class="fa fa-cloud-upload"></i>
+          <input name="photo2" type="file">
+          <span>Drop files here to upload</span>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+        <div class="col-md-12 col-sm-12">
+          <button type="submit" class="btn btn-success btn-primary small-btn">Submit your company</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'Dashboard/base.html' %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+
+<div class="clearfix"></div>
+			
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfa4M0Gsh3JVpkwNvdDRu63JHOLOWor_tVdw&usqp=CAU);">
+  <div class="container">
+    <h2  style="color: white;">Sign In</h2>
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<!-- Accordion Design Start -->
+<section class="accordion">
+  <div class="container">
+    <div class="row">
+      
+      <!-- Billing Address -->
+      <div class="col-md-6 col-sm-6">
+        <div class="sidebar-wrapper">
+        
+        <div class="sidebar-box-header bb-1">
+          <h4>Sign in with Google</h4>
+        </div>
+        
+
+
+
+{% if process == "connect" %}
+
+
+<p>{% blocktrans with provider.name as provider %}You are about to connect a new third party account from {{ provider }}.{% endblocktrans %}</p>
+{% else %}
+
+
+<p>{% blocktrans with provider.name as provider %}You are about to sign in using a third party account from {{ provider }}.{% endblocktrans %}</p>
+{% endif %}
+
+<form method="post">
+  {% csrf_token %}
+  <button class="btn btn-primary" type="submit">{% trans "Continue" %}</button>
+  
+</form>
+
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+{% endblock %}

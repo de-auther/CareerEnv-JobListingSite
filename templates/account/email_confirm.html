@@ -1,0 +1,67 @@
+{% extends "Dashboard/base.html" %}
+
+{% load i18n %}
+{% load account %}
+
+{% block head_title %}{% trans "Confirm E-mail Address" %}{% endblock %}
+
+
+{% block content %}
+
+
+
+
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfa4M0Gsh3JVpkwNvdDRu63JHOLOWor_tVdw&usqp=CAU);">
+    <div class="container">
+      <h2  style="color: white;">E-mail Confirmation</h2>
+    </div>
+  </section>
+  <div class="clearfix"></div>
+  <!-- Title Header End -->
+  
+  <!-- Accordion Design Start -->
+  <section class="accordion">
+    <div class="container">
+      <div class="row">
+        
+        <!-- Billing Address -->
+        <div class="col-md-6 col-sm-6">
+          <div class="sidebar-wrapper">
+          
+          <div class="sidebar-box-header bb-1">
+            <h4>Confirm E-mail Address</h4>
+          </div>
+
+{% if confirmation %}
+
+{% user_display confirmation.email_address.user as user_display %}
+
+<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+{% csrf_token %}
+    <button class="btn btn-primary" type="submit">{% trans 'Confirm' %}</button>
+</form>
+
+{% else %}
+
+{% url 'account_email' as email_url %}
+
+<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+
+{% endif %}
+
+
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+{% endblock %}

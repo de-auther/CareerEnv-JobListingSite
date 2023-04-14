@@ -1,0 +1,106 @@
+{% extends "Dashboard/base.html" %}
+
+{% load i18n %}
+{% load socialaccount %}
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="clearfix"></div>
+			
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfa4M0Gsh3JVpkwNvdDRu63JHOLOWor_tVdw&usqp=CAU);">
+  <div class="container">
+    <h2  style="color: white;">Create An Account</h2>
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<!-- Accordion Design Start -->
+<section class="accordion">
+  <div class="container">
+    <div class="row">
+      
+      <!-- Billing Address -->
+      <div class="col-md-6 col-sm-6">
+        <div class="sidebar-wrapper">
+        
+        <div class="sidebar-box-header bb-1">
+          <h4>Create An Account</h4>
+        </div>
+        
+
+
+
+
+
+
+ 
+        <div class="col-md-12" style="border: 1px solid #4285F4; border-radius: 5px;">
+          <a  href="{% provider_login_url 'google' %}"><img src="https://img.icons8.com/color/48/null/google-logo.png"/> <b> SignUp with Google</b></a>
+      </div> <br>
+
+
+
+      <div class="social-devider" style="padding: 20px;">
+        <span class="line"></span>
+        <span class="circle">Or</span>
+        </div>
+        
+        <div class="clearfix"></div>
+        
+        <div class="social-login row">
+
+
+
+
+        
+        
+       
+
+
+<div>
+
+
+
+
+
+<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="update-btn" type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+
+<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p> <br>
+
+</div>
+
+
+
+
+
+
+</div>
+</div>
+
+<!-- Payment Detail -->
+
+
+</div>
+
+</div>
+</section>
+<!-- Accordion Design End -->
+
+
+
+{% endblock %}

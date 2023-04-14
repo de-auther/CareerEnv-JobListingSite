@@ -1,0 +1,128 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="clearfix"></div><br>
+<div class="container" style="margin-top: 100px;">
+
+    
+        <!-- Start Settings -->
+        
+            <div class="row no-mrg">
+                <h3>Create Profile</h3>
+                <div class="edit-pro">
+                    <form method="POST" enctype="multipart/form-data" action="{% url 'edit_profile' %}">
+                        {% csrf_token %}
+                    <div class="col-md-6 col-sm-6">
+                        
+                        <label>First Name</label>
+                        {% if user_details.first %}
+                        <input name="first" type="text" class="form-control" value="{{user_details.first}}",>
+                        {% else %}
+                        <input name="first" type="text" class="form-control" placeholder="First Name">
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-md-6 col-sm-6">
+                        <label>Last Name</label>
+                        {% if user_details.last %}
+                        <input name="last" type="text" class="form-control" value="{{user_details.last}}">
+                        {% else %}
+                        <input name="last" type="text" class="form-control" placeholder="Last Name" >
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>Email</label>
+                        {% if user_details.mail %}
+                        <input name="mail" type="email" class="form-control" value="{{user_details.mail}}">
+                        {% else %}
+                        <input name="mail" type="email" class="form-control" placeholder="example@example.com">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>Phone</label>
+                        {% if user_details.phone %}
+                        <input name="phone" type="text" class="form-control" value="{{user_details.phone}}">
+                        {% else %}
+                        <input name="phone" type="text" class="form-control" placeholder="+91 258 475 6859">
+                        {% endif %}
+                        
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>Zip / Postal</label>
+                        {% if user_details.postal %}
+                        <input name="postal" type="text" class="form-control"  value="{{user_details.postal}}">
+                        {% else %}
+                        <input name="postal" type="text" class="form-control"  placeholder="686543">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>Address</label>
+                        {% if user_details.address%}
+                        <input name="address" type="text" class="form-control" value="{{user_details.address}}">
+                        {% else %}
+                        <input name="address" type="text" class="form-control" placeholder="Address" >
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-md-4 col-sm-6">
+                        <label>City</label>
+                        {% if user_details.city %}
+                        <input name="city" type="text" class="form-control" value="{{user_details.city}}">
+                        {% else %}
+                        <input name="city" type="text" class="form-control"  placeholder="Manimala">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>State</label>
+                        {% if user_details.state %}
+                        <input name="state" type="text" class="form-control" value="{{user_details.state}}" >
+                        {% else %}
+                        <input name="state" type="text" class="form-control"  placeholder="Kerala">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>Country</label>
+                        {% if user_details.country %}
+                        <input name="country" type="text" class="form-control" value="{{user_details.country}}" >
+                        {% else %}
+                        <input name="country" type="text" class="form-control"  placeholder="India">
+                        {% endif %}
+                    </div>
+                    
+                    <div class="col-md-4 col-sm-6">
+                        <label>About you</label>
+                        {% if user_details.about %}
+                        <textarea name="about" class="form-control" >{{user_details.about}}</textarea>
+                        {% else %}
+                        <textarea name="about" class="form-control" placeholder="Write about you..."></textarea>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <label>Upload Profile Pic</label>
+                        <div  class="dropzone dz-clickable profile-pic">
+                            <div class="dz-default dz-message">
+                                <i class="fa fa-cloud-upload"></i>
+                                {% if user_details.dp %}
+                                <input name="dp" type="file"  value="{{user_details.dp.url}}">
+                                {% else %}
+                                <input name="dp" type="file">
+                                {% endif %}
+                                <span>Drop files here to upload</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="col-sm-12">
+                        <button type="submit" class="update-btn">Update Now</button>
+                    </div>
+                </div></form>
+            </div>
+        
+    
+
+</div>
+
+{% endblock %}

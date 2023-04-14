@@ -1,0 +1,167 @@
+{% extends 'Main/base.html' %}
+{% load static %}
+	
+	
+	
+{% block content %}
+	
+	<!-- End Navigation -->
+			<div class="clearfix"></div>
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-title" style="background-image:url({% static 'assets/img/banner-6.jpg' %});">
+				<div class="container">
+					<h1>Blog Page</h1>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- Title Header End -->
+			
+			<!-- All blog List Start -->
+			<section class="section">
+				<div class="container">
+					<div class="row .no-mrg">
+						<!-- Start Blogs -->
+						<div class="col-md-8">
+
+						{% for blog in blogs %}
+						
+							<article class="blog-news">
+								<div class="short-blog">
+									<figure class="img-holder">
+										<a href="{{blog.get_blog}}"><img style="width: 800px;" src="{{blog.headpic}}" class="img-responsive" alt="News"></a>
+										<div class="blog-post-date">
+											{{blog.date}}
+										</div>
+									</figure>
+									<div class="blog-content">
+										<div class="post-meta">By: <span class="author">{{blog.auther}}</span> | {{comments}} Comments </div>
+										<a href="{{blog.get_blog}}"><h2>{{blog.h1}}</h2></a>
+										<div class="blog-text">
+											<p class="trunc">{{blog.p1}}</p>
+											<div class="post-meta">Filed Under: <span class="category"><a href="#">{{blog.category}}</a></span></div>
+										</div>
+									</div>
+								</div>
+							</article>
+							{% endfor %}
+							
+							
+						</div>
+						<!-- End Blogs -->
+						
+						<!-- Sidebar Start -->
+						<div class="col-md-4">
+							<div class="blog-sidebar">
+							
+								<form action="#">
+									<div class="search-form">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Search…">
+											<span class="input-group-btn">
+												<button type="button" class="btn btn-default">Go</button>
+											</span>
+										</div>
+									</div>
+								</form>
+								
+								<div class="sidebar-widget">
+									<h4>Popular Category</h4>
+									{% for category in categories %}
+									<ul class="sidebar-list">
+										<li><a href="#">{{category.category}} <span>{{category.category.count}}</span></a></li>
+									</ul>
+									{% endfor %}
+								</div>
+								
+								<div class="sidebar-widget">
+									<h4>Popular Category</h4>
+									<div class="blog-item">
+										<div class="post-thumb"><a href="blog-detail.html"><img src="assets/img/blog/1.jpg" class="img-responsive" alt=""></a></div>
+										<div class="blog-detail">
+											<a href="blog-details.html"><h4>Enim Ad Minim Veniam, Quis Nostrud Exercitation</h4></a>
+											<div class="post-info">Aug 10 2016</div>
+										</div>
+									</div>
+									<div class="blog-item">
+										<div class="post-thumb"><a href="blog-detail.html"><img src="assets/img/blog/2.jpg" class="img-responsive" alt=""></a></div>
+										<div class="blog-detail">
+											<a href="blog-details.html"><h4>Enim Ad Minim Veniam, Quis Nostrud Exercitation</h4></a>
+											<div class="post-info">Aug 10 2016</div>
+										</div>
+									</div><div class="blog-item">
+										<div class="post-thumb"><a href="blog-detail.html"><img src="assets/img/blog/3.jpg" class="img-responsive" alt=""></a></div>
+										<div class="blog-detail">
+											<a href="blog-details.html"><h4>Enim Ad Minim Veniam, Quis Nostrud Exercitation</h4></a>
+											<div class="post-info">Aug 10 2016</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="sidebar-widget">
+									<h4>Recent Category</h4>
+									<div class="blog-item">
+										<div class="post-thumb"><a href="blog-detail.html"><img src="assets/img/blog/1.jpg" class="img-responsive" alt=""></a></div>
+										<div class="blog-detail">
+											<a href="blog-details.html"><h4>Enim Ad Minim Veniam, Quis Nostrud Exercitation</h4></a>
+											<div class="post-info">Aug 10 2016</div>
+										</div>
+									</div>
+									<div class="blog-item">
+										<div class="post-thumb"><a href="blog-detail.html"><img src="assets/img/blog/2.jpg" class="img-responsive" alt=""></a></div>
+										<div class="blog-detail">
+											<a href="blog-details.html"><h4>Enim Ad Minim Veniam, Quis Nostrud Exercitation</h4></a>
+											<div class="post-info">Aug 10 2016</div>
+										</div>
+									</div><div class="blog-item">
+										<div class="post-thumb"><a href="blog-detail.html"><img src="assets/img/blog/3.jpg" class="img-responsive" alt=""></a></div>
+										<div class="blog-detail">
+											<a href="blog-details.html"><h4>Enim Ad Minim Veniam, Quis Nostrud Exercitation</h4></a>
+											<div class="post-info">Aug 10 2016</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<!-- End Sidebar Start -->
+					</div>
+					<div class="row">
+						<ul class="pagination">
+							<li><a href="#">&laquo;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li> 
+							<li><a href="#">4</a></li> 
+							<li><a href="#"><i class="fa fa-ellipsis-h"></i></a></li> 
+							<li><a href="#">&raquo;</a></li> 
+						</ul>
+					</div>
+				</div>
+			</section>
+			<!-- All Blog List End -->
+			
+			<!-- ============================ Call To Action ================================== -->
+			<section class="theme-bg call-to-act-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							
+							<div class="call-to-act">
+								<div class="call-to-act-head">
+									<h3>Want to Become a Success Employers?</h3>
+									<span>We'll help you to grow your career and growth.</span>
+								</div>
+								<a href="#" class="btn btn-call-to-act">SignUp Today</a>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- ============================ Call To Action End ================================== -->
+			
+
+
+
+			{% endblock %}

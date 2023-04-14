@@ -1,0 +1,378 @@
+{% extends "Main/base.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+
+
+        <div class="clearfix"></div>
+        <div class="banner trans" style="background-image:url({% static 'assets/img/slider-1.jpg' %});"  data-overlay="6">
+            <div class="container">
+                <div class="banner-caption">
+                    <div class="col-md-12 col-sm-12 banner-text">
+                        <h1>{{job_count}}+ Browse Jobs</h1>
+                        <div class="full-search-2 eclip-search italian-search hero-search-radius">
+							<div class="hero-search-content">
+
+								<form action="{% url 'search' %}" method="get">
+
+								<div class="row">
+									<div class="col-lg-4 col-md-4 col-sm-12 small-padd b-r">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<input name="keyword" type="text" class="form-control" placeholder="Job Title or Keywords">
+												<i class="ti-search"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-3 col-md-3 col-sm-12 small-padd b-r">
+										<div class="form-group">
+											<div class="input-with-icon">
+												<select name="cityselect" id="choose-city" class="form-control">
+													<option value="None" >Choose City</option>
+													{% for city in cities %}
+													<option value="{{city}}">{{city}}</option>
+													{% endfor %}
+													
+												</select>
+												<i class="ti-location-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-lg-3 col-md-3 col-sm-12 small-padd">
+										<div class="form-group">
+										<div class="input-with-icon">
+											<select name="categoryselect" id="choose-category" class="form-control">
+												<option value="None">Job Category</option>
+												{% for category in categories %}
+												<option value="{{category}}">{{category}}</option>
+												{% endfor %}
+											</select>
+											<i class="ti-layers"></i>
+										</div>
+									</div>
+									</div>
+
+									<div class="col-lg-2 col-md-2 col-sm-12 small-padd">
+										<div class="form-group">
+											<div class="form-group">
+												<button type="submit"  class="btn btn-primary search-btn">Search</button>
+											</div>
+										</div>
+									</div>
+
+								</div> </form>
+
+							</div>
+						</div>
+						
+				<!--	<div class="modal fade inlineOverride"  tabindex="-5" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+							<div  class="modal-dialog">
+								<div class="modal-content">
+									<div  class="modal-body">
+						
+										<div class="modal-body">
+										
+											<div class="new-logwrap">
+												{% for message in messages %}
+												<p>{{message}}</p>
+												{% endfor %}
+												</div>
+												</div>
+											</div>
+										</div>
+									</div>
+						
+								</div>  -->	
+												
+
+						
+							
+							
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <!-- Company Brand Start -->
+		<div class="company-brand">
+			<div class="container">
+				<div id="company-brands" class="owl-carousel">
+					<div class="brand-img">
+						<img src="{% static 'assets/img/microsoft-home-dark.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/img-home-dark.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/mothercare-hom-darke.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/paypal-home-dark.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/serv-home-dark.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/xerox-home-dark.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/yahoo-home-dark.png' %}" class="img-responsive" alt="" />
+					</div>
+					<div class="brand-img">
+						<img src="{% static 'assets/img/mothercare-hom-darke.png' %}" class="img-responsive" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Company Brand End -->
+
+
+    <!-- Categories start -->
+
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="main-heading">
+                    <h2>Browse Jobs By <span>Category</span></h2></div>
+            </div>
+            <div class="row">
+			{% for category in categories%}
+                <div class="col-md-3 col-sm-6">
+                    <div class="category-box" data-aos="fade-up">
+                        <div class="category-desc">
+                            <div class="category-icon"><i class="{{category.icon}}" aria-hidden="true"></i><i class="{{category.icon}} abs-icon" aria-hidden="true"></i></div>
+                            <div class="category-detail category-desc-text">
+                                <h4> <a href="{{category.get_url}}">{{category.category}}</a></h4>
+                                <p> Jobs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+					{% endfor %}
+
+			</div>
+		</div>
+	</section>
+        
+
+<!--Category end-->
+
+        <section id="jobs">
+            <div class="container">
+                <div class="row">
+                    <div class="main-heading">
+                        <p>200 New Jobs</p>
+                        <h2>New & Random <span>Jobs</span></h2></div>
+                </div>
+                <div class="row extra-mrg">
+
+					<!-- Single New Job -->
+					{% for job in jobs %}
+                    <div class="col-md-3 col-sm-6">
+                        <div class="job-instructor-layout">
+
+							{% if job.varified %}
+							<span class="tg-themetag tg-featuretag ">Varified</span>
+							 {% endif %}
+							 {% if job.Fresher %}
+							 <center><p style="font-family: monospace; background-color: #beb8be; color: white; font-size: 12px; border-radius: 0px 0px 10px 10px; width: 50%;">Fresher</p></center>
+							 {% endif %}
+							<div class="brows-job-type"><span class="freelanc">{{job.availability}}</span></div>
+							{% if job.photo %}
+							<div class="job-instructor-thumb">
+								
+								<a href="{{job.get_url}}"><img src="{{job.photo.url}}" class="img-fluid" alt="" /></a>
+							</div>
+							{% elif job.photourl %}
+							<div class="job-instructor-thumb">
+								
+								<a href="{{job.get_url}}"><img src="{{job.photourl}}" class="img-fluid" alt="" /></a>
+							</div>
+							{% else %}
+							<div class="job-instructor-thumb">
+								
+								<a href="{{job.get_url}}"><img src="/media/default.jpg" class="img-fluid" alt="" /></a>
+							</div>
+							{% endif %}
+							<div class="job-instructor-content">
+								<h4 class="instructor-title"><a href="{{job.get_url}}">{{job.name}}</a></h4>
+								<p class="instructor-skills" >({{job.company}})</p>
+								<div class="instructor-skills trunc">
+									{{job.skill}}
+								</div>
+							</div>
+							<div class="job-instructor-footer">
+								<div class="instructor-students">
+									<h5 class="instructor-scount">{{job.salary}}</h5>
+								</div>
+								<div class="instructor-corses">
+									<span class="c-counting">{{job.vaccancy}} Open</span>
+								</div>
+							</div>
+						</div>
+                    </div>
+					{% endfor %}
+
+					<!-- Single New Job --> 
+
+
+
+		
+
+
+                </div>
+            </div>
+        </section>
+
+<!-- Load more -->
+
+<section class="pricing">
+	<div class="container">
+
+		<!--/row-->
+
+		<div class="row">
+
+			
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<div class="text-center">
+					<a href="{% url 'list_job' %}" class="btn btn-primary">Load More</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	</div>
+</section>
+
+
+
+
+		<div class="clearfix"></div>
+        <section class="how-it-works">
+            <div class="container">
+                <div class="row" data-aos="fade-up">
+                    <div class="col-md-12">
+                        <div class="main-heading">
+                            <p>Working Process</p>
+                            <h2>How It <span>Works</span></h2></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                        <div class="working-process"><span class="process-img"><img src="{% static 'assets/img/step-1.png' %}" class="img-responsive" alt=""/><span class="process-num">01</span></span>
+                            <h4>Create An Account</h4>
+                            <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="working-process"><span class={{user_details.dp.url}}""process-img"><img src="{% static 'assets/img/step-2.png' %}" class="img-responsive" alt=""/><span class="process-num">02</span></span>
+                            <h4>Search Jobs</h4>
+                            <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                        <div class="working-process"><span class="process-img"><img src="{% static 'assets/img/step-3.png' %}" class="img-responsive" alt=""/><span class="process-num">03</span></span>
+                            <h4>Apply</h4>
+                            <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers find place best.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <!-- pricing Section Start -->
+		
+
+		
+{% if user_details %}
+<a href="{% url 'dashboard' %}"><button style="margin-bottom: 30px; margin-right: 30px; background: transparent;" class="w3-button w3-teal w3-xlarge w3-right"><img class="w3-right spin" style="position: sticky; height: 50px; width: 50px; border-radius: 100%;" src="{{user_details.dp.url}}" alt=""/></button></a>
+{% else %}
+<button style="margin-bottom: 30px; margin-right: 30px; background: transparent;" class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()" ><img class="w3-right spin" style="position: sticky; height: 50px; width: 50px; border-radius: 100%;" src="/media/default.jpg" alt=""/></button>
+<div class="w3-sidebar w3-bar-block w3-card-2 w3-animate-right" style="display:none; right:0; background-color: white; " id="rightMenu">
+	<button style="background-color: white; " onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button><br>
+	<div class="cc-profile-image"  style=" right: 20px; bottom:50px; height: 100px; width: 100px; border-radius: 100%; margin-left: 50px;">
+	<img style=" height: 100px; width: 100px; border-radius: 100%;" src="/media/default.jpg" alt=""/> 
+</div><br>
+
+		<div><center><a href="{% url 'dashboard' %}"><button class="btn btn-primary"><i class="fa fa-pencil"></i> Sign In Now</button></a></center></div><br><br>
+{% endif %}	
+		
+				
+			
+		</div>
+			<!-- End Candidate Section -->
+
+			<!-- ============================ Call To Action ================================== -->
+			<section class="theme-bg call-to-act-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+
+							<div class="call-to-act">
+								<div class="call-to-act-head">
+									<h3>Want to Become a Success Employers?</h3>
+									<span>We'll help you to grow your career and growth.</span>
+								</div>
+								<a href="javascript:void(0)" data-toggle="modal" data-target="#signup" class="btn btn-call-to-act signin">SignUp Today</a>
+								
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- ============================ Call To Action End ================================== -->
+
+			<!-- ============================ Before Footer ================================== -->
+			<div class="before-footer">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-md-6 col-sm-6">
+							<div class="jb4-form-fields">
+								<div class="input-group">
+								  <input type="email" class="form-control" placeholder="Enter your email address">
+								  <span class="input-group-btn">
+									<button class="btn theme-bg" type="submit"><span class="fa fa-paper-plane-o"></span></button>
+								  </span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-sm-6 hill">
+							<ul class="job stock-facts">
+								
+								<li><span>{{job_count}}</span></br>Jobs Posted</li>
+								<li><span>{{user_count}}</span></br>Users</li>
+								<li><span>2021</span></br>Freelancer</li>
+								<li><span>50</span></br>Companies</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!--*****************************************************************************************************************************-->
+
+
+
+		{% endblock %}
+
+		

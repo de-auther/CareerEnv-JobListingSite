@@ -1,0 +1,147 @@
+{% extends 'Dashboard/base.html' %}
+{% load static %}
+{% block content %}
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			
+			<!-- Title Header Start -->
+			<section class="inner-header-title" style="background-image:url({% static 'assets/img/banner-10.jpg' %});">
+				<div class="container">
+					<h2 style="color: white;">Browse Resume</h2><br>
+					<h1>{{job_name}}</h1>
+				</div>
+			</section>
+			<div class="clearfix"></div>
+			<!-- Title Header End -->
+			
+			<!-- Browse Resume List Start -->
+			<section class="manage-company">
+				<div class="container">
+					<!-- Company Searrch Filter Start -->
+					
+					<!-- Company Searrch Filter End -->
+					
+					
+					
+					
+					
+					
+				{% for resume in resumes %}
+					<form action="{% url 'browse_res' job_id %}" method="POST">
+						{% csrf_token %}
+					<a href="/view_res/{{resume.resume}}/" class="item-click">
+						<input type="text" name="resume" value="{{resume.resume}}" style="display: None;">
+						<article>
+							<div class="brows-resume">
+								<div class="row no-mrg">
+									<div class="col-md-6 col-sm-6">
+										<div class="item-fl-box">
+											{% if resume.photo %}
+											<div class="brows-resume-pic">
+												
+												<img src="{{resume.photo}}" class="img-responsive" alt="" />
+											</div>
+											{% endif %}
+											<div class="brows-resume-name">
+												<h4>{{resume.seeker_name}}</h4>
+												<input name="seeker" type="text" value="{{resume.seeker_name}}" style="display: None;">
+												{% if resume.status %}
+												<span class="brows-resume-designation">{{resume.status}}</span>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4">
+										<div class="brows-resume-location">
+											<p><i class="fa fa-map-marker"></i></p>
+										</div>
+									</div>
+									<div class="col-md-2 col-sm-2">
+
+											{% if resume.photo %}
+
+										<div class="browse-resume-rate">
+											<button  type="submit" class="btn btn-success">Shortlist</button>
+											<button formaction="{% url 'delete_res' job_id %}" type="submit" style="border: solid red 1px; color: red;" >Delete</button>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+								{% if resume.skill %}
+								<div class="row extra-mrg row-skill">
+									<div class="browse-resume-skills">
+										<div class="col-md-9 col-sm-8">
+											<div class="br-resume">
+												<span>css</span><span>html</span><span>photoshop</span><span>wordpress</span>
+												<span>css</span>
+											</div>
+										</div>
+										<div class="col-md-3 col-sm-4">
+											<div class="browse-resume-exp">
+												<span class="resume-exp">Exp. {{resume.experience}} Year</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								{% endif %}
+							</div>
+						</article>
+					</a>
+					</form>
+
+					{% endfor %}
+
+				</div>
+			</section>
+					
+					<div class="row">
+						<ul class="pagination">
+							{% if resumes.has_previous %}
+							<li><a href="/dashboard/list_job/?page={{resumes.previous_page_number}}"><i class="ti-arrow-left"></i></a></li>
+							{% endif %}
+		
+							
+							<li class=""><a href="#">{{resumes.number}}</a><span> ...</span> <span> {{resumes.end_index}}</span> </li> 
+							
+							{% if resumes.has_next %}
+							<li><a href="/dashboard/list_job/?page={{resumes.next_page_number}}"><i class="ti-arrow-right"></i></a></li> 
+							{% endif %}
+						</ul>
+					</div>
+					
+				
+			<!-- Browse Resume List End -->
+			
+
+			<!-- ============================ Before Footer ================================== -->
+			<div class="before-footer">
+				<div class="container">
+					<div class="row">
+						
+						<div class="col-md-6 col-sm-6">
+							<div class="jb4-form-fields">
+								<div class="input-group">
+								  <input type="email" class="form-control" placeholder="Enter your email address">
+								  <span class="input-group-btn">
+									<button class="btn theme-bg" type="submit"><span class="fa fa-paper-plane-o"></span></button>
+								  </span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="col-md-6 col-sm-6 hill">
+							<ul class="job stock-facts">
+								<li><span>2744</span></br>Jobs Posted</li>
+								<li><span>2365</span></br>Jobs Posted</li>
+								<li><span>2021</span></br>Freelancer</li>
+								<li><span>7542</span></br>Companies</li>
+							</ul>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<!-- ============================ Before Footer ================================== -->
+			
+
+			{% endblock %}

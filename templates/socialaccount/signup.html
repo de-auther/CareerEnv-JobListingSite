@@ -1,0 +1,52 @@
+{% extends "Dashboard/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="clearfix"></div>
+			
+<!-- Title Header Start -->
+<section class="inner-header-title" style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfa4M0Gsh3JVpkwNvdDRu63JHOLOWor_tVdw&usqp=CAU);">
+  <div class="container">
+    <h2  style="color: white;">Sign In</h2>
+  </div>
+</section>
+<div class="clearfix"></div>
+<!-- Title Header End -->
+
+<!-- Accordion Design Start -->
+<section class="accordion">
+  <div class="container">
+    <div class="row">
+      
+      <!-- Billing Address -->
+      <div class="col-md-6 col-sm-6">
+        <div class="sidebar-wrapper">
+        
+        <div class="sidebar-box-header bb-1">
+          <h4>Sign in with Google</h4>
+        </div>
+        
+
+<p>{% blocktrans with provider_name=account.get_provider.name site_name=site.name %}You are about to use your {{provider_name}} account to login to
+{{site_name}}. As a final step, please complete the following form:{% endblocktrans %}</p>
+
+<form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+</form>
+
+
+</div>
+</div>
+</div>
+</div>
+</section>
+
+{% endblock %}
